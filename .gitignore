@@ -121,6 +121,7 @@ modules.order
 !.mailmap
 !.pylintrc
 !.rustfmt.toml
+!.pylintrc
 
 #
 # Generated include files
@@ -194,3 +195,10 @@ sphinx_*/
 
 # bc language scripts (not LLVM bitcode)
 !kernel/time/timeconst.bc
+
+
+# Smatch
+*.smatch
+*.smatch.caller_info
+*.smatch.sql
+smatch_*
