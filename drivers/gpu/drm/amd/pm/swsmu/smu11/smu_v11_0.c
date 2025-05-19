@@ -1230,6 +1230,10 @@ int smu_v11_0_get_fan_speed_pwm(struct smu_context *smu,
 	uint32_t duty100, duty;
 	uint64_t tmp64;
 
+
+	if (!speed)
+		return -EINVAL;
+
 	/*
 	 * For pre Sienna Cichlid ASICs, the 0 RPM may be not correctly
 	 * detected via register retrieving. To workaround this, we will
