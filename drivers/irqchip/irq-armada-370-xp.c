@@ -815,7 +815,7 @@ static int __init mpic_map_region(struct device_node *np, int index,
 	*base = ioremap(res.start, resource_size(&res));
 	if (WARN_ON(!*base)) {
 		err = -ENOMEM;
-		goto fail;
+		goto fail_release_mem_region;
 	}
 
 	if (phys_base)
@@ -823,6 +823,8 @@ static int __init mpic_map_region(struct device_node *np, int index,
 
 	return 0;
 
+fail_release_mem_region:
+	release_mem_region(res.start, resource_size(&res));
 fail:
 	pr_err("%pOF: Unable to map resource %d: %pE\n", np, index, ERR_PTR(err));
 	return err;
