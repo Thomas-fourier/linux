@@ -348,7 +348,7 @@ static void au1550nd_remove(struct platform_device *pdev)
 	WARN_ON(ret);
 	nand_cleanup(chip);
 	iounmap(ctx->base);
-	release_mem_region(r->start, 0x1000);
+	release_mem_region(r->start, resource_size(r));
 	kfree(ctx);
 }
 
