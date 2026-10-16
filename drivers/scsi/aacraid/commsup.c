@@ -81,7 +81,7 @@ void aac_fib_map_free(struct aac_dev *dev)
 		return;
 
 	num_fibs = dev->scsi_host_ptr->can_queue + AAC_NUM_MGT_FIB;
-	fib_size = dev->max_fib_size + sizeof(struct aac_fib_xporthdr);
+	fib_size = dev->max_cmd_size + sizeof(struct aac_fib_xporthdr);
 	alloc_size = fib_size * num_fibs + ALIGN32 - 1;
 
 	dma_free_coherent(&dev->pdev->dev, alloc_size, dev->hw_fib_va,
