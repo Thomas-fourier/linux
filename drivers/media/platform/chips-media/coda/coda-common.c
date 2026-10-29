@@ -3023,6 +3023,7 @@ static void coda_fw_callback(const struct firmware *fw, void *context)
 	dev->m2m_dev = v4l2_m2m_init(&coda_m2m_ops);
 	if (IS_ERR(dev->m2m_dev)) {
 		v4l2_err(&dev->v4l2_dev, "Failed to init mem2mem device\n");
+		dev->m2m_dev = NULL;
 		goto put_pm;
 	}
 
@@ -3043,6 +3044,7 @@ rel_vfd:
 	while (--i >= 0)
 		video_unregister_device(&dev->vfd[i]);
 	v4l2_m2m_release(dev->m2m_dev);
+	dev->m2m_dev = NULL;
 put_pm:
 	pm_runtime_put_sync(dev->dev);
 }
